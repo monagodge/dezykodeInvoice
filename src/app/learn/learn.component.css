@@ -1,0 +1,152 @@
+.container-fluid{
+    background-image: url("https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+
+}
+form {
+  /* Keep the form styling intact */
+  height: fit-content;
+  width: 900px;
+  box-sizing: border-box;
+  padding: 40px;
+  margin: 0;
+  background-color: white; 
+  backdrop-filter: blur(50px);
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(20, 20, 20, 0.4);
+  position: relative; /* Ensures proper layering */
+  overflow: hidden; /* Ensures watermark stays within form bounds */
+}
+
+/* Pseudo-element for watermark */
+form::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; /* Adjust the size of the watermark */
+  height: 400px; /* Adjust the size of the watermark */
+  /* background-image: url("https://content.jdmagicbox.com/v2/comp/pune/s4/020pxx20.xx20.231230161306.t4s4/catalogue/dezykode-it-solutions-pvt-ltd-kharadi-pune-computer-software-training-institutes-ngy67w0r01.jpg"); */
+  background-image: url('/logo-For_Invoice-removebg-preview.png');
+  /* background-image: url('/logo-For_Invoice-removebg-preview.png'); */
+
+  background-size: contain;
+  opacity: 0.1; /* Set opacity for watermark effect */
+  z-index: 1; /* Places the watermark behind the content */
+  pointer-events: none; /* Ensures it doesn't interfere with interactions */
+}
+
+@media print {
+  /* Ensure the watermark is visible when printed */
+  form::before {
+    opacity: 0.1; /* Adjust opacity to match the watermark effect */
+    visibility: visible; /* Ensures the watermark is visible in print */
+  }
+  
+  /* You may want to remove other things that are only for screen display */
+  .no-print {
+    display: none; /* Hide elements that shouldn't appear in print, if any */
+  }
+
+  /* Optional: Set specific styles for print, like adjusting form size or removing shadows */
+  form {
+    box-shadow: none; /* Optionally remove shadows for print */
+    backdrop-filter: none; /* Remove blur effect for print */
+  }
+}
+
+/* .bordered{
+    border: 1px dashed grey !important;
+} */
+/* .padding{
+    padding-bottom: 18% !important;
+} */
+.blur{
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 5px rgba(20, 20, 20, 0.4);
+    transition: all 0.3s ease; /* This makes the transition smooth for all properties */
+
+}
+
+.blur {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blur::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    /* background-image: url("https://gifdb.com/images/high/water-drop-slow-motion-4rbqt7glk4p2ce2l.gif"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border:2px solid yellowgreen; */
+    transition: width 0.5s ease;
+    z-index: -1;
+  }
+  
+  .blur:hover::before {
+    width: 100%;
+  }
+  
+  .blur:hover {
+    backdrop-filter: blur(50px);
+    /* box-shadow: 0 0 10px green; */
+    /* transition: box-shadow 0.3s ease; */
+  }
+  
+  .blur:hover {
+    border: 1px solid transparent; /* You can remove the border property here if you want */
+  }
+  
+
+.modal-body {
+    padding: 0;
+}
+.border{
+  border: 1px solid orange !important;
+}
+tr{
+  border-bottom: 1px solid orange;
+}
+/* For modern browsers */
+/* input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox 
+input[type="number"] {
+  -moz-appearance: textfield;
+} */
+.modal {
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+}
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+@media print {
+  /* Hide everything except the relevant section */
+  body * {
+      visibility: hidden;
+  }
+
+  .print-section, .print-section * {
+      visibility: visible;
+  }
+
+  /* Optionally, style the printed content */
+  .print-section {
+      padding: 10px;
+  }
+}

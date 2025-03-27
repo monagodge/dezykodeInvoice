@@ -1,0 +1,27 @@
+#sidebar {
+  transition: transform 0.3s ease;  /* Smooth transition when toggling */
+  left: 0;  /* Sidebar stays on the left */
+  width: 250px;  /* Fixed width of sidebar */
+}
+a:hover button {
+  color: green; /* Or any other color you prefer */
+}
+.content {
+  transition: margin-left 0.3s ease;  /* Smooth transition for content */
+  margin-left: 0;  /* Content is at the full width by default */
+}
+
+.ml-250px {
+  margin-left: 250px;  /* When sidebar is visible, add margin to main content */
+}
+
+@media (max-width: 768px) {
+  /* On smaller screens, slide the sidebar offscreen when hidden */
+  #sidebar.d-none {
+    transform: translateX(-100%);  /* Sidebar is offscreen */
+  }
+
+  #sidebar.d-md-block {
+    transform: translateX(0);  /* Sidebar is onscreen */
+  }
+}

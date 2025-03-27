@@ -1,0 +1,14 @@
+<!-- view-invoice.component.html -->
+<div class="container">
+    <h3>Invoice Details</h3>
+    <div *ngIf="invoiceDetails">
+      <p><strong>Invoice No:</strong> {{ invoiceDetails.invoiceNo }}</p>
+      <p><strong>Item:</strong> {{ invoiceDetails.item }}</p>
+      <p><strong>Invoice Date:</strong> {{ invoiceDetails.invoiceDate }}</p>
+      <p><strong>Name:</strong> {{ invoiceDetails.name }}</p>
+      <p><strong>Email:</strong> {{ invoiceDetails.email }}</p>
+      <p><strong>Amount:</strong> ₹{{ invoiceDetails.amount }}</p>
+      <!-- Add other invoice details here -->
+    </div>
+  </div>
+  

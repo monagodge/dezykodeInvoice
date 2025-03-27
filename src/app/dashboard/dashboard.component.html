@@ -1,0 +1,45 @@
+<div class="">
+    <!-- Sidebar -->
+    <div
+      id="sidebar"
+      class="bg-dark text-white p-3 vh-100 position-fixed text-center"
+      [ngClass]="{ 'd-none': !isSidebarVisible, 'd-md-block': isSidebarVisible }"
+    >
+      <h3>Sidebar</h3>
+      <ul class="nav flex-column">
+        <a >
+          <button routerLink="tableInvoice" class="p-1 border mb-3 bg-light text-start" style="width: 100%;">
+            <i class="fa fa-home me-2 p-2"></i> Home
+          </button>
+        </a>
+        <a >
+          <button routerLink="tableInvoice" class="p-1 border mb-3 bg-light text-start" style="width: 100%;">
+            <i class="fa fa-info-circle me-2 p-2"></i> About
+          </button>
+        </a>
+        <a >
+          <button routerLink="tableInvoice" class="p-1 border mb-3 bg-light text-start" style="width: 100%;">
+            <i class="fa fa-comments me-2 p-2"></i> Invoice
+          </button>
+        </a>
+        <a >
+          <button routerLink="tableInvoice" class="p-1 border mb-3 bg-light text-start" style="width: 100%;">
+            <i class="fa fa-phone  me-2 p-2"></i> Contact
+          </button>
+        </a>
+      </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="content p-4 d-md-block" [ngClass]="{ 'ml-250px': isSidebarVisible }">
+      <button class="btn btn-outline-info" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i> 
+      </button>
+      
+      <router-outlet></router-outlet>
+      <!-- <button routerLink="learn" class="btn p-1 border mb-3 bg-light">New Invoice</button> -->
+      <!-- <h1>Main Content</h1>
+      <p>This is the main content area.</p> -->
+    </div>
+  </div>
+  

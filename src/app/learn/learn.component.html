@@ -1,0 +1,750 @@
+<div class="container-fluid d-flex justify-content-center">
+    <form
+      [formGroup]="billingForm"
+      id="invoiceContent"
+      action=""
+      class="justify-content-center align-items-center mb-5 mt-5 mona"
+      style="backdrop-filter: blur(10px)"
+      (keydown)="onKeydown($event)"
+    >
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="d-flex">
+        <div
+          class=""
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin: 0;
+          "
+        >
+          <h3
+            style="color: orange; text-align: left; margin: 0; margin-left: 10px"
+          >
+            TAX INVOICE
+          </h3>
+          <h6
+            class="d-none d-sm-flex"
+            style="text-align: right; margin: 0; margin-right: 10px"
+          >
+            ORIGINAL FOR RECIPIENT
+          </h6>
+        </div>
+      </div>
+  
+      <div class="flex-md-row flex-column" style="display: flex; width: 100%">
+        <div
+          style="
+            flex: 8;
+            padding-right: 10px;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+          "
+        >
+          <h4 style="margin: 0">DEZYKODE IT SOLUTION PRIVATE LIMITED</h4>
+          <h6 style="margin: 0">GSTIN 27AAKCD0617P1ZB PAN AAKCD0617P</h6>
+          <div style="margin: 0">
+            <p style="margin: 0">
+              Survey No.53,54, Second Floor, City Vista, Building A - 08
+            </p>
+            <p style="margin: 0">Fountain Road, Pune</p>
+            <p style="margin: 0">MAHARASHTRA, 411014</p>
+            <p style="margin: 0">
+              <strong>Mobile: </strong>+91 8793938874, 9730822219
+              <strong>Email:</strong> dezykode&#64;gmail.com
+            </p>
+            <p style="margin: 0"><strong>Website:</strong> www.dezykode.com</p>
+          </div>
+        </div>
+        <div style="flex: 4">
+          <img
+            src="https://dezykode.com/assets/img/logo/Dk.svg"
+            alt="Dezykode IT Solutions"
+            style="
+              width: 100%;
+              height: 100px;
+              object-fit: cover;
+              margin-right: 20px;
+            "
+          />
+        </div>
+      </div>
+  
+      <!-- next row -->
+      <div class="row p-2">
+        <div class="col-md-4">
+          <div
+            class="blur p-2 mona padding rounded text-start justify-content-between align-items-center"
+          >
+            <label for="invoiceNo" class="form-label">Invoice #</label>
+            <input
+              type="text"
+              class="form-control bg-light border-0"
+              id="invoiceNo"
+              formControlName="invoiceNo"
+              readonly
+              value="billingForm.value.invoiceNo"
+            />
+            <!-- <div class="text-start text-dark">
+          Invoice #: <br>
+         <strong>{{ billTo.invoiceNo || 'No data yet' }}</strong> <br />
+          </div> -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!-- Display Invoice Date -->
+          <div
+            class="blur p-2 mb-sm-2 mona padding rounded text-start justify-content-between align-items-center"
+          >
+            <!-- Form Group for Invoice Date -->
+            <label for="phone" class="form-label">Invoice Date</label>
+            <input
+              type="text"
+              class="form-control bg-light border-0"
+              id="invoiceDate"
+              formControlName="invoiceDate"
+              readonly
+              value="billingForm.value.invoiceDate"
+            />
+            <div
+              *ngIf="
+                billingForm.controls['invoiceDate'].invalid &&
+                billingForm.controls['invoiceDate'].touched
+              "
+              class="text-danger"
+            >
+              invoice date is required.
+            </div>
+            <div class="text-dark">
+              <!-- <strong>invoice date:</strong> {{ billingForm.value.invoiceDate }} -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div
+            class="blur p-2 mb-sm-2 mona padding rounded text-start justify-content-between align-items-center"
+          >
+            <div class="form-group">
+              <label for="dueDate" class="form-label">Due Date</label>
+              <input
+                type="date"
+                id="dueDate"
+                formControlName="dueDate"
+                class="form-control"
+              />
+              <div
+                *ngIf="
+                  billingForm.controls['dueDate'].invalid &&
+                  billingForm.controls['dueDate'].touched
+                "
+                class="text-danger"
+              >
+                due Date is required.
+              </div>
+            </div>
+            <div class="text-dark">
+              <!-- <strong>Due Date:</strong> {{ billingForm.value.dueDate || 'No data yet' }} <br /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+  
+      <div class="row p-2">
+        <div class="col-md-4">
+          <div class="modal-dialog" *ngIf="isModalOpen">
+            <div class="modal-content">
+              <div
+                class="d-flex blur p-3 pb-5 mona padding rounded text-start justify-content-between align-items-center position-relative"
+              >
+                <!-- Modal Header with Close Button -->
+                <!-- <div class="modal-header position-absolute top-0 end-0 p-2">
+                  <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+                </div> -->
+  
+                <!-- Modal Body -->
+                <div class="text-start text-dark modal-body">
+                  Customer Details:
+                  {{ billingForm.value.name || "No data yet" }} <br />
+                  {{ billingForm.value.phone || "No data yet" }} <br />
+                  {{ billingForm.value.email || "No data yet" }}
+                </div>
+  
+                <!-- Edit Button at the Bottom Right -->
+                <div class="position-absolute bottom-0 end-0 p-2">
+                  <button class="btn btn-outline-dark" (click)="openModal()">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4">
+          <div style="padding: 10px">
+            <p>
+              <strong>Billing Address:</strong><br />
+              OFFICE NUMBER -08, 2ND FLOOR, CITY<br />
+              VISTA -A WING,<br />
+              DOWNTOWN ROAD KHARADI<br />
+              Pune City East, MAHARASHTRA, 411014
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="width: 30%; padding: 10px"></div>
+        </div>
+      </div>
+      <!-- start row -->
+      <div class="row p-2">
+        <div class="col-md-4">
+          <div style="padding: 10px">
+            <p>
+              <strong>Place of Supply:</strong><br />
+              <strong>27-MAHARASHTRA</strong><br />
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-md-12">
+          <!-- Payment Schedule Header and Add Button -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <button class="btn btn-outline-primary" (click)="show = !show">
+              Add
+            </button>
+          </div>
+  
+          <!-- Table Section with Dynamic Stage and Percentage -->
+          <div class="table-responsive">
+            <table class="table caption-top text-start">
+              <thead class="table-light">
+                <tr>
+                  <th>#</th>
+                  <th>Item</th>
+                  <th>Rate/Item</th>
+                  <th>GST (18%)</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Input Fields for Adding a New Payment Schedule -->
+                <tr *ngIf="show">
+                  <td>#</td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      placeholder="Stage"
+                      formControlName="Item"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control mb-2"
+                      placeholder="Rate/Item"
+                      formControlName="Rate"
+                      (ngModelChange)="calculateTaxDetails()"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control mb-2"
+                      placeholder="GST (18%)"
+                      formControlName="GST"
+                      readonly
+                    />
+                  </td>
+                  <td>
+                    <input
+                      *ngIf="showAmount"
+                      type="number"
+                      class="form-control mb-2"
+                      placeholder="Amount"
+                      formControlName="Amount"
+                      readonly
+                    />
+                  </td>
+                  <td class="d-flex pb-4 border-0">
+                    <button
+                      class="btn btn-outline-success me-3"
+                      (click)="add($event)"
+                    >
+                      <i class="fa fa-check"></i>
+                    </button>
+                    <button
+                      class="btn btn-outline-secondary"
+                      (click)="show = false"
+                    >
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+  
+                <!-- Display added payment schedules -->
+                <tr *ngFor="let row of paymentSchedules1; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ row.Item }}</td>
+                  <td>{{ row.Rate }}</td>
+                  <td>{{ row.GST }}</td>
+                  <td>{{ row.Amount }}</td>
+                  <td class="d-flex mb-4 border-0">
+                    <button
+                      class="btn btn-outline-danger me-3"
+                      (click)="deleteit(i)"
+                    >
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <button
+                      class="btn btn-outline-primary"
+                      (click)="editPaymentSchedule1(i)"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div
+              class="p-2 mona padding rounded text-start justify-content-between align-items-center"
+            >
+              <div class="text-end text-dark">
+                <strong>Taxable Amount </strong>
+                <strong class="px-5">{{
+                  totalAmount | currency : "INR" : "symbol" : "1.0-0"
+                }}</strong>
+                <br />
+                <strong> CGST 9.0%</strong>
+                <strong class="px-5">
+                  {{
+                    billingForm.get("CGST")?.value
+                      | currency : "INR" : "symbol" : "1.0-0"
+                  }}
+                </strong>
+                <br />
+                <strong>IGST 9.0% </strong>
+                <strong class="px-5">
+                  {{
+                    billingForm.get("IGST")?.value
+                      | currency : "INR" : "symbol" : "1.0-0"
+                  }}
+                </strong>
+                <hr class="m-0" />
+                <strong>TOTAL </strong>
+                <strong class="px-5">{{
+                  totalAmount | currency : "INR" : "symbol" : "1.0-0"
+                }}</strong>
+                <br />
+                <hr class="my-0" style="color: orange; border: 1px solid" />
+                <strong>Amount Payable </strong>
+                <strong class="px-5">{{
+                  totalAmount | currency : "INR" : "symbol" : "1.0-0"
+                }}</strong>
+                <br />
+                <strong>Amount Payable after Discount</strong>
+                <strong class="px-5">{{
+                  discountedTotal | currency : "INR" : "symbol" : "1.0-0"
+                }}</strong>
+                <br />
+                <strong>Discount in Value </strong>
+                <strong class="px-5">
+                  {{ discountAmount | currency : "INR" : "symbol" : "1.0-0" }}
+                </strong>
+                <br />
+                <strong>Discount in Percentage</strong>
+                <strong class="px-5"> {{ discount }}% </strong>
+                <br />
+                <div class="row justify-content-end py-1">
+                  <div class="col-6">
+                    <div class="d-flex justify-content-end align-items-center">
+                      <label for="Disc" class="form-label mb-0 mr-2"
+                        ><strong>Enter Discount </strong></label
+                      >
+                      <input
+                        type="number"
+                        class="form-control bg-light border-0"
+                        id="Disc"
+                        formControlName="Disc"
+                        placeholder="Enter discount in %"
+                        (input)="validateDiscount($event)"
+                        min="0"
+                        max="40"
+                        style="width: auto; flex-grow: 1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <strong>Discounted Total in Words: </strong>
+  
+                <span class="px-5"
+                  >{{ numberToWords(discountedTotal) }} only
+                </span>
+                <hr class="my-0" style="color: orange; border: 1px solid" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-md-5">
+          <div class="  ">
+            <div class="text-start text-dark">
+              <div style="padding: 10px">
+                <strong>Bank Details:</strong><br />
+                <span>Bank :</span>
+                <strong class="px-5"> AU Small Finance Bank </strong><br />
+                <!--  -->
+                <span>Account # :</span>
+                <strong class="px-2"> 2502261664479692 </strong><br />
+                <!--  -->
+                <span> IFSC Code :</span>
+                <strong class="px-2"> AUBLOOO2612 </strong> <br />
+                <!--  -->
+                <span style="padding-right: 7px"> Branch :</span>
+                <strong class="px-4"> PUNE </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-7">
+          <div>
+            <div class="text-start text-dark">
+              <div style="padding: 10px">
+                <strong>Amount Payable after Discount</strong>
+                <strong class="px-5">
+                  {{ discountedTotal | currency : "INR" : "symbol" : "1.0-0" }}
+                </strong>
+                <br />
+  
+                <!-- Step 1: Payment Option Selection (Installments or Full Payment) -->
+                <label><strong>Choose Payment Option</strong></label>
+                <div class="d-flex justify-content-between">
+                  <label class="btn btn-outline-dark">
+                    <input
+                      type="radio"
+                      name="paymentOption"
+                      (click)="setPaymentOption('full')"
+                      class="btn btn-primary me-1"
+                    />
+                    <strong>Full Payment</strong>
+                  </label>
+  
+                  <label class="btn btn-outline-dark">
+                    <input
+                      type="radio"
+                      name="paymentOption"
+                      (click)="setPaymentOption('2')"
+                      class="btn btn-primary me-1"
+                    />
+                    <strong>2 Installments</strong>
+                  </label>
+  
+                  <label class="btn btn-outline-dark">
+                    <input
+                      type="radio"
+                      name="paymentOption"
+                      (click)="setPaymentOption('3')"
+                      class="btn btn-primary me-1"
+                    />
+                    <strong>3 Installments</strong>
+                  </label>
+                </div>
+  
+          
+                <!-- Displaying Installment details based on selected payment option -->
+                <div *ngIf="paymentOption === '2'">
+                  <strong>Remaining Amount: </strong> ₹{{
+                    discountedTotal -amountToPay
+                  }}
+                  <br />
+                  <strong>Installment 1: </strong> ₹{{
+                    (discountedTotal ) / 2
+  
+                  }}
+                  <span *ngIf="installmentStatus.installment1 === 'paid'">
+                    (Paid on {{ installmentDates.installment1 }})
+                  </span>
+                  <span *ngIf="installmentStatus.installment1 === 'pending'">
+                    (Pending)
+                  </span>
+                  <br />
+  
+                  <strong>Installment 2: </strong> ₹{{
+                    (discountedTotal ) /2
+                  }}
+                  <span *ngIf="installmentStatus.installment2 === 'paid'">
+                    (Paid on {{ installmentDates.installment2 }})
+                  </span>
+                  <span *ngIf="installmentStatus.installment2 === 'pending'">
+                    (Pending)
+                  </span>
+                  <br />
+  
+                  <!-- Buttons to pay installments when 2 installments are selected -->
+                  <button
+                    class="btn btn-outline-dark"
+                    (click)="payInstallment(1)"
+                    *ngIf="installmentStatus.installment1 === 'pending'"
+                  >
+                    Pay Installment 1
+                  </button>
+                  <button
+                    class="btn btn-outline-dark"
+                    (click)="payInstallment(2)"
+                    *ngIf="installmentStatus.installment2 === 'pending'"
+                  >
+                    Pay Installment 2
+                  </button>
+                </div>
+  
+                <div *ngIf="paymentOption === '3'">
+                  <strong>Remaining Amount: </strong> ₹{{
+                    discountedTotal -amountToPay
+                  }}
+                  <br />
+                  <strong>Installment 1: </strong> ₹{{
+                    (discountedTotal ) / 3
+                  }}
+                  <span *ngIf="installmentStatus.installment1 === 'paid'">
+                    (Paid on {{ installmentDates.installment1 }})
+                  </span>
+                  <span *ngIf="installmentStatus.installment1 === 'pending'">
+                    (Pending)
+                  </span>
+                  <br />
+  
+                  <strong>Installment 2: </strong> ₹{{
+                    (discountedTotal ) / 3
+                  }}
+                  <span *ngIf="installmentStatus.installment2 === 'paid'">
+                    (Paid on {{ installmentDates.installment2 }})
+                  </span>
+                  <span *ngIf="installmentStatus.installment2 === 'pending'">
+                    (Pending)
+                  </span>
+                  <br />
+  
+                  <strong>Installment 3: </strong> ₹{{
+                    (discountedTotal ) / 3
+                  }}
+                  <span *ngIf="installmentStatus.installment3 === 'paid'">
+                    (Paid on {{ installmentDates.installment3 }})
+                  </span>
+                  <span *ngIf="installmentStatus.installment3 === 'pending'">
+                    (Pending)
+                  </span>
+                  <br />
+  
+                  <!-- Buttons to pay installments when 3 installments are selected -->
+                  <button
+                    class="btn btn-outline-dark"
+                    (click)="payInstallments(1)"
+                    *ngIf="installmentStatus.installment1 === 'pending'"
+                  >
+                    Pay Installment 1
+                  </button>
+                  <button
+                    class="btn btn-outline-dark"
+                    (click)="payInstallments(2)"
+                    *ngIf="installmentStatus.installment2 === 'pending'"
+                  >
+                    Pay Installment 2
+                  </button>
+                  <button
+                    class="btn btn-outline-dark"
+                    (click)="payInstallments(3)"
+                    *ngIf="installmentStatus.installment3 === 'pending'"
+                  >
+                    Pay Installment 3
+                  </button>
+                </div>
+  
+                <!-- Step 3: Select Payment Method -->
+                <div>
+                  <label><strong>Select Payment Method</strong></label>
+                  <select class="form-select" (change)="selectPaymentMethod($event)">
+                    <option value="" disabled selected>Select Payment Method</option>
+                    <option value="upi">UPI</option>
+                    <option value="CashPay">Cash</option>
+                    <option value="debit card">Debit Card</option>
+                    <option value="credit card">Credit Card</option>
+                    <option value="netbanking">Net Banking</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+                <!-- Show name input only if 'Cash' is selected -->
+                <div *ngIf="selectedPaymentOption === 'CashPay'">
+                  <label for="receiverName"><strong>Enter Receiver's Name:</strong></label>
+                  <input
+                    type="text"
+                    id="receiverName"
+                    class="form-control"
+                    [(ngModel)]="receiverName"   
+                    formControlName="receiverName" 
+                    placeholder="Enter name"
+                  />
+                  <div>{{ "Receiver's Name: " + receiverName }}</div>
+                </div>
+                
+
+  
+                <!-- Step 4: Proceed Payment -->
+                <div>
+                  <button (click)="processPayment()" class="btn btn-success mt-3">
+                    Proceed Payment
+                  </button>
+                </div>
+  
+                <!-- Payment Status -->
+                <div *ngIf="paymentStatus">
+                  <div
+                    *ngIf="paymentStatus === 'success'"
+                    class="alert alert-success mt-3"
+                  >
+                    Payment Successful!
+                  </div>
+                  <div
+                    *ngIf="paymentStatus === 'pending'"
+                    class="alert alert-warning mt-3"
+                  >
+                    Payment Pending. Please complete your installments.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-outline-success" (click)="printInvoice()">
+          Print <i class="fa-solid fa-print"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Modal for Bill To edit -->
+  <div
+  class="modal fade"
+  id="billToModal"
+  tabindex="-1"
+  aria-labelledby="billToModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="max-width: 800px; width: 100%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onCancel()"
+        ></button>
+      </div>
+      <div class="modal-body d-flex">
+        <form [formGroup]="billingForm" (ngSubmit)="onSubmit()" (keydown)="onKeydown($event)">
+          <div class="container">
+            <h3 class="mb-2">Customer Details:</h3>
+            <div class="row mb-2">
+              <div class="col-md-4">
+                <label for="name" class="form-label"
+                  >Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                />
+                <div
+                  *ngIf="
+                    billingForm.controls['name'].invalid &&
+                    billingForm.controls['name'].touched
+                  "
+                  class="text-danger"
+                >
+                  Name is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  formControlName="phone"
+                />
+                <div
+                  *ngIf="
+                    billingForm.controls['phone'].invalid &&
+                    billingForm.controls['phone'].touched
+                  "
+                  class="text-danger"
+                >
+                  Phone number is required.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    billingForm.controls['email'].invalid &&
+                    billingForm.controls['email'].touched
+                  "
+                  class="text-danger"
+                >
+                  Email is required.
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-end">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-danger me-2"
+                  data-bs-dismiss="modal"
+                  (click)="onCancel()"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                  [disabled]="!isModalFormValid()"              >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
